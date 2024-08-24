@@ -13,7 +13,7 @@ contract Crowdfunding {
         bool ended;
     }
 
-    // Events for logging actions
+    
     event CampaignCreated(uint campaignId, string title, address benefactor, uint goal, uint deadline);
     event DonationReceived(uint campaignId, address donor, uint amount);
     event CampaignEnded(uint campaignId, uint amountRaised, address benefactor);
@@ -21,9 +21,9 @@ contract Crowdfunding {
     address public owner; // Owner of the contract
     uint public campaignCount = 0; // Counter for campaigns
 
-    mapping(uint => Campaign) public campaigns; // Mapping campaign ID to Campaign details
+    mapping(uint => Campaign) public campaigns; 
 
-    // Constructor to set the contract owner
+    
     constructor() {
         owner = msg.sender;
     }
@@ -34,13 +34,13 @@ contract Crowdfunding {
         _;
     }
 
-    // Modifier to ensure the campaign exists
+    
     modifier campaignExists(uint campaignId) {
         require(campaignId <= campaignCount && campaigns[campaignId].deadline != 0, "Campaign does not exist.");
         _;
     }
 
-    // Create a new campaign
+    
     function createCampaign(
         string memory _title,
         string memory _description,
